@@ -1,7 +1,3 @@
-3
-abc
-bca
-a
-aa
-cabbba
-abbccc
+2
+leet**cod*e
+erase*****

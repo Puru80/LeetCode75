@@ -1,27 +1,8 @@
 import java.util.*;
 import java.io.*;
 
-class RecentCounter {
-    private static final int[] records = new int[10000]; //
-    private int start;
-    private int end;
 
-    public RecentCounter() {
-
-    }
-
-    public int ping(int t) {
-        while (start < end && (t - records[start] > 3000)) {
-            start++;
-        }
-
-        records[end++] = t;
-
-        return end - start;
-    }
-}
-
-public class Problem933 {
+public class Problem649 {
 
     public static PrintWriter pw;
 
@@ -68,13 +49,42 @@ public class Problem933 {
         }
     }
 
+    public static String predictPartyVictory(String senate){
+        Queue<Integer> rad = new ArrayDeque<>();
+        Queue<Integer> dir = new ArrayDeque<>();
+
+        int n = senate.length();
+
+        for(int i=0;i<n;i++){
+            if(senate.charAt(i) == 'R'){
+                rad.add(i);
+            } else {
+                dir.add(i);
+            }
+        }
+
+        while(!rad.isEmpty() && !dir.isEmpty()){
+            if(rad.peek() < dir.peek()){
+                rad.add(n++);
+            } else{
+                dir.add(n++);
+            }
+            rad.poll();
+            dir.poll();
+        }
+
+        return rad.isEmpty() ? "Dire" : "Radiant";
+    }
+
     public static void main(String[] args) throws Exception {
         FastReader input = new FastReader();
         pw = new PrintWriter(new BufferedWriter(new FileWriter("D:/VSCode/LeetCode75/output.txt")));
         int t = input.nextInt();
 
         while (t-- > 0) {
+            String s = input.nextLine();
 
+            pw.println(predictPartyVictory(s));
         }
 
         pw.flush();

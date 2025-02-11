@@ -1,2 +1,2 @@
-Radient
-Dire
+Ans: 3
+Ans: 1
